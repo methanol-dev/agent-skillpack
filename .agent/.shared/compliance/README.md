@@ -1,4 +1,15 @@
-# ⚖️ Compliance Master Module
+---
+module: compliance
+version: 4.2.0
+layer: vertical
+compliance_gates:
+  - legal_review
+  - gdpr_audit
+references:
+  - rules: [compliance.md]
+---
+
+# ⚖️ Compliance & Legal Blueprint
 
 > **Status**: Regulatory Guard
 > **Type**: Shared Module (Policies & Audits)

@@ -1,3 +1,13 @@
+---
+module: domain-blueprints
+version: 4.2.0
+layer: vertical
+compliance_gates:
+  - domain_logic_alignment
+references:
+  - rules: [business.md, product-manager.md]
+---
+
 # 🏗️ Domain Blueprints Module
 
 > **Status**: Vertical Architecture

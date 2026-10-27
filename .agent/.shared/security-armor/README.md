@@ -1,4 +1,15 @@
-# 🛡️ Security Armor Module
+---
+module: security-armor
+version: 4.2.0
+layer: technical
+compliance_gates:
+  - vuln_scan
+  - hardening_verify
+references:
+  - rules: [security.md, malware-protection.md]
+---
+
+# 🛡️ Security Armor & Hardening Guide
 
 > **Status**: Critical Defense
 > **Type**: Shared Module (Audits & Configs)

@@ -1,4 +1,15 @@
-# 📡 API Standards Module
+---
+module: api-standards
+version: 4.2.0
+layer: technical
+compliance_gates:
+  - restful_compliance
+  - naming_consistency
+references:
+  - rules: [backend.md]
+---
+
+# 🔌 API Standards & Communication Protocol
 
 > **Status**: Interface Contract
 > **Type**: Shared Module (Specs & Formats)

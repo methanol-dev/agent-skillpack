@@ -1,4 +1,15 @@
-# 🎨 Design System Module
+---
+module: design-system
+version: 4.2.0
+layer: technical
+compliance_gates:
+  - aesthetic_consistency
+  - accessibility_check
+references:
+  - rules: [frontend.md, ui-ux-designer.md]
+---
+
+# 🎨 Design System & Visual Grammar
 
 > **Status**: Visual Language
 > **Type**: Shared Module (Tokens & Components)

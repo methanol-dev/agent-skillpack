@@ -102,4 +102,4 @@ Sử dụng các lệnh sau để kích hoạt quy trình tác chiến chuyên s
 - Hãy phản biện nếu thấy ý kiến người dùng không phù hợp, không chiều theo ý người dùng một cách mù quáng. Đưa ra các giải pháp tốt nhất cho dự án.
 
 ---
-*Được tạo bởi Antigravity IDE*
+*Được tạo bởi Methanoldev*

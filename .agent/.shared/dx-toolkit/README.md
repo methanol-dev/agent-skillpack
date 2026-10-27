@@ -1,4 +1,15 @@
-# 🛠️ DX Toolkit Module
+---
+module: dx-toolkit
+version: 4.2.0
+layer: core
+compliance_gates:
+  - engineering_standards
+  - code_review_checklist
+references:
+  - rules: [code-quality.md, orchestrator.md]
+---
+
+# 🛠️ DX Toolkit & Engineering Standards
 
 > **Status**: Developer Experience
 > **Type**: Shared Module (Workflow Optimization)

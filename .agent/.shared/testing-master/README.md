@@ -1,6 +1,15 @@
-# 🧪 Testing Master Module
+---
+module: testing-master
+version: 4.2.0
+layer: technical
+compliance_gates:
+  - test_coverage_audit
+  - scenario_matching
+references:
+  - rules: [testing-standard.md, test-engineer.md]
+---
 
-> **Status**: Quality Assurance
+# 🧪 Testing Master Scenarios & QA Patterns
 > **Type**: Shared Module (Checklists & Scenarios)
 
 This module defines the testing phases and acceptance criteria.

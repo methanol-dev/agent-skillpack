@@ -1,4 +1,15 @@
-# 🦾 Resilience Patterns Module
+---
+module: resilience-patterns
+version: 4.2.0
+layer: technical
+compliance_gates:
+  - error_handling_audit
+  - chaos_test_pass
+references:
+  - rules: [backend.md, devops-engineer.md]
+---
+
+# 🏗️ Resilience Patterns & Fault Tolerance
 
 > **Status**: Deep Tech / Enterprise
 > **Type**: Shared Module (System Stability)

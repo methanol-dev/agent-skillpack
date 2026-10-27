@@ -1,4 +1,15 @@
-# ☁️ Infra Blueprints Module
+---
+module: infra-blueprints
+version: 4.2.0
+layer: vertical
+compliance_gates:
+  - deployment_readiness
+  - scaled_architecture_check
+references:
+  - rules: [infra-review.md, devops-engineer.md]
+---
+
+# 🏗️ Infra Blueprints & Scaled Deployment
 
 > **Status**: Cloud Foundation
 > **Type**: Shared Module (IaC & Topology)

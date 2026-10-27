@@ -1,4 +1,15 @@
-# 🧠 AI Master Module
+---
+module: ai-master
+version: 4.2.0
+layer: technical
+compliance_gates:
+  - prompt_audit
+  - agency_verification
+references:
+  - rules: [ai-engineer.md, langgraph-engineering.md]
+---
+
+# 🤖 AI Master & Agentic Design Patterns
 
 > **Status**: Core Capability
 > **Type**: Shared Module (Prompts & Patterns)

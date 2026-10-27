@@ -1,4 +1,15 @@
-# 🎨 Design Philosophy Module
+---
+module: design-philosophy
+version: 4.2.0
+layer: core
+compliance_gates:
+  - visual_audit
+  - tactile_audit
+references:
+  - rules: [frontend.md, quality-inspector.md]
+---
+
+# 🎨 Design Philosophy & Aesthetic Core
 
 > **Status**: Internalized Wisdom
 > **Type**: Shared Module (Philosophy & Assets)

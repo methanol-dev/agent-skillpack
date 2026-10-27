@@ -1,4 +1,15 @@
-# 💎 UI/UX Pro Max Module
+---
+module: ui-ux-pro-max
+version: 4.2.0
+layer: technical
+compliance_gates:
+  - aesthetics_audit
+  - animation_smoothness
+references:
+  - rules: [frontend.md, ui-ux-pro-max.md]
+---
+
+# ✨ UI/UX Pro Max & Aesthetic DNA
 
 > **Status**: Premium Design
 > **Type**: Shared Module (Advanced Tooling)

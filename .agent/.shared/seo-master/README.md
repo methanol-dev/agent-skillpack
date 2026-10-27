@@ -1,4 +1,15 @@
-# 📈 SEO Master Module
+---
+module: seo-master
+version: 4.2.0
+layer: technical
+compliance_gates:
+  - lighthouse_seo_audit
+  - mobile_usability_check
+references:
+  - rules: [seo-fundamentals.md, seo-specialist.md]
+---
+
+# 🚀 SEO Master & GEO Optimization DNA
 
 > **Status**: Growth Engines
 > **Type**: Shared Module (Traffic & Visibility)
