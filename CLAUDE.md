@@ -39,24 +39,32 @@ Vui lòng sử dụng các kỹ năng phù hợp nhất cho **Phát triển chun
 - Kiểm thử và gỡ lỗi
 
 ## 📚 Tiêu chuẩn Dùng chung (Tự động Kích hoạt)
-**17 Module Chia sẻ** sau trong `.agent/.shared` phải được tuân thủ:
-1.  **AI Master**: Mô hình LLM & RAG.
-2.  **API Standards**: Chuẩn OpenAPI & REST.
-3.  **Compliance**: Giao thức GDPR/HIPAA.
-4.  **Database Master**: Quy tắc Schema & Migration.
-5.  **Design System**: Pattern UI/UX & Tokens.
-6.  **Domain Blueprints**: Kiến trúc theo lĩnh vực.
-7.  **I18n Master**: Tiêu chuẩn Đa ngôn ngữ.
-8.  **Infra Blueprints**: Cấu hình Terraform/Docker.
-9.  **Metrics**: Giám sát & Telemetry.
-10. **Security Armor**: Bảo mật & Audit.
-11. **Testing Master**: Chiến lược TDD & E2E.
-12. **UI/UX Pro Max**: Tương tác nâng cao.
-13. **Vitals Templates**: Tiêu chuẩn Hiệu năng.
-14. **Malware Protection**: Chống mã độc & Phishing.
-15. **Auto-Update**: Giao thức tự bảo trì.
-16. **Error Logging**: Hệ thống tự học từ lỗi.
-17. **Docs Sync**: Đồng bộ tài liệu.
+**17 Module Chia sẻ** sau trong `.agent/.shared/<module>/` phải được tuân thủ (mỗi module có `README.md` với frontmatter `module/version/layer`):
+
+*Core (nền tảng)*
+1.  **design-philosophy**: Triết lý thiết kế, audit visual/tactile.
+2.  **dx-toolkit**: Chuẩn kỹ thuật (ENGINEERING_STANDARDS), code review, VS Code presets.
+3.  **metrics**: Giám sát, Telemetry, benchmarks.
+4.  **vitals-templates**: Template PRD, audit report, tiêu chuẩn hiệu năng.
+
+*Technical (kỹ thuật)*
+5.  **ai-master**: Mô hình LLM, RAG, Agentic patterns, RESEARCH_PROTOCOL.
+6.  **api-standards**: Chuẩn OpenAPI & REST, naming, pagination, error codes.
+7.  **database-master**: Schema, Migration, mẫu SQL (auth/rbac, cms, ecommerce).
+8.  **design-system**: Tokens, brand presets, micro-interactions, generation rules.
+9.  **i18n-master**: Đa ngôn ngữ, từ điển kỹ thuật VI.
+10. **resilience-patterns**: Circuit breaker, chaos engineering.
+11. **security-armor**: Hardening, vuln scan, helmet config.
+12. **seo-master**: Technical SEO, JSON-LD schema.
+13. **testing-master**: Chiến lược TDD & E2E.
+14. **ui-ux-pro-max**: AESTHETICS, data CSV (styles/colors/typography/charts).
+
+*Verticals (lĩnh vực)*
+15. **compliance**: GDPR/HIPAA, legal templates.
+16. **domain-blueprints**: Kiến trúc theo lĩnh vực (fintech, edtech, logistics...).
+17. **infra-blueprints**: Deployment specs, Terraform/Docker.
+
+> Malware Protection, Auto-Update, Error Logging, Docs Sync **không phải** module `.shared` mà là **rules** trong `.agent/rules/`: lần lượt `security.md`, `system-update.md`, `error-logging.md`, `docs-update.md`.
 
 ## ⌨️ Hệ thống lệnh Slash Command (Tự động Kích hoạt)
 > **Chỉ dẫn Hệ thống**: Các quy trình (workflows) nằm trong thư mục `.agent/workflows/`. Khi người dùng gọi lệnh, BẠN PHẢI đọc file `.md` tương ứng (ví dụ: `/api` -> `.agent/workflows/api.md`) để thực thi.
