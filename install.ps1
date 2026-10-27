@@ -5,12 +5,12 @@
 
 .DESCRIPTION
     Remote one-liner (run from the ROOT of the target project):
-      irm https://raw.githubusercontent.com/methanoldev/agent-skillpack/main/install.ps1 | iex
+      irm https://raw.githubusercontent.com/methanol-dev/agent-skillpack/main/install.ps1 | iex
 
     With parameters when piped:
-      iex "& { $(irm https://raw.githubusercontent.com/methanoldev/agent-skillpack/main/install.ps1) } -Force"
-      iex "& { $(irm https://raw.githubusercontent.com/methanoldev/agent-skillpack/main/install.ps1) } -Project D:\code\app"
-      iex "& { $(irm https://raw.githubusercontent.com/methanoldev/agent-skillpack/main/install.ps1) } -Update"
+      iex "& { $(irm https://raw.githubusercontent.com/methanol-dev/agent-skillpack/main/install.ps1) } -Force"
+      iex "& { $(irm https://raw.githubusercontent.com/methanol-dev/agent-skillpack/main/install.ps1) } -Project D:\code\app"
+      iex "& { $(irm https://raw.githubusercontent.com/methanol-dev/agent-skillpack/main/install.ps1) } -Update"
 
     What it does:
       1. Ensures the pack exists in a central dir ($env:USERPROFILE\.agent-skillpack):
@@ -44,7 +44,7 @@ param(
     [string]$Project = $(if ($env:SKILLPACK_PROJECT) { $env:SKILLPACK_PROJECT } else { (Get-Location).Path }),
     [switch]$Force   = $($env:SKILLPACK_FORCE -eq "1"),
     [switch]$Update,
-    [string]$Repo    = $(if ($env:SKILLPACK_REPO) { $env:SKILLPACK_REPO } else { "https://github.com/methanoldev/agent-skillpack.git" }),
+    [string]$Repo    = $(if ($env:SKILLPACK_REPO) { $env:SKILLPACK_REPO } else { "https://github.com/methanol-dev/agent-skillpack.git" }),
     [string]$PackDir = $(if ($env:SKILLPACK_DIR)  { $env:SKILLPACK_DIR }  else { Join-Path $env:USERPROFILE ".agent-skillpack" })
 )
 

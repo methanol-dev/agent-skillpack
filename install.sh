@@ -3,7 +3,7 @@
 # macOS / Linux / WSL. Works from a local clone OR straight from the internet.
 #
 # Remote one-liner (run from the ROOT of the target project):
-#   curl -fsSL https://raw.githubusercontent.com/methanoldev/agent-skillpack/main/install.sh | bash
+#   curl -fsSL https://raw.githubusercontent.com/methanol-dev/agent-skillpack/main/install.sh | bash
 #
 # With options when piped:
 #   curl -fsSL .../install.sh | bash -s -- --force
@@ -24,7 +24,7 @@ set -euo pipefail
 PROJECT="${SKILLPACK_PROJECT:-$PWD}"
 FORCE="${SKILLPACK_FORCE:-0}"
 UPDATE=0
-REPO="${SKILLPACK_REPO:-https://github.com/methanoldev/agent-skillpack.git}"
+REPO="${SKILLPACK_REPO:-https://github.com/methanol-dev/agent-skillpack.git}"
 PACK_DIR="${SKILLPACK_DIR:-$HOME/.agent-skillpack}"
 
 while [ $# -gt 0 ]; do

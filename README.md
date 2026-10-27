@@ -4,7 +4,7 @@ Bộ công cụ agent (`.agent/` + `CLAUDE.md`) đóng gói thành **package onl
 host trên GitHub, kéo về và cài vào **bất kỳ project nào, trên bất kỳ máy nào** bằng 1 lệnh.
 
 ```
-https://github.com/methanoldev/agent-skillpack
+https://github.com/methanol-dev/agent-skillpack
 ```
 
 ## Cài vào project (1 lệnh)
@@ -14,13 +14,13 @@ https://github.com/methanoldev/agent-skillpack
 **Windows (PowerShell 5.1+)**
 
 ```powershell
-irm https://raw.githubusercontent.com/methanoldev/agent-skillpack/main/install.ps1 | iex
+irm https://raw.githubusercontent.com/methanol-dev/agent-skillpack/main/install.ps1 | iex
 ```
 
 **macOS / Linux / WSL**
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/methanoldev/agent-skillpack/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/methanol-dev/agent-skillpack/main/install.sh | bash
 ```
 
 Lệnh trên sẽ:
@@ -41,7 +41,7 @@ Lệnh trên sẽ:
 | Chỉ update pack, không đụng project | `... -Update` | `... --update` |
 | Đổi repo / thư mục pack | `-Repo`, `-PackDir` hoặc env `SKILLPACK_REPO`, `SKILLPACK_DIR` | `--repo`, `--pack-dir` hoặc env tương tự |
 
-`<URL>` = `https://raw.githubusercontent.com/methanoldev/agent-skillpack/main`
+`<URL>` = `https://raw.githubusercontent.com/methanol-dev/agent-skillpack/main`
 
 Env override dùng được cho cả 2 nền tảng: `SKILLPACK_PROJECT`, `SKILLPACK_FORCE=1`, `SKILLPACK_REPO`, `SKILLPACK_DIR`.
 
@@ -50,7 +50,7 @@ Env override dùng được cho cả 2 nền tảng: `SKILLPACK_PROJECT`, `SKILL
 Vì `.agent` là link, chỉ cần update pack trung tâm là **mọi project đang link đều thấy ngay**:
 
 ```powershell
-iex "& { $(irm https://raw.githubusercontent.com/methanoldev/agent-skillpack/main/install.ps1) } -Update"
+iex "& { $(irm https://raw.githubusercontent.com/methanol-dev/agent-skillpack/main/install.ps1) } -Update"
 # hoặc đơn giản:  git -C ~/.agent-skillpack pull
 ```
 
@@ -59,7 +59,7 @@ iex "& { $(irm https://raw.githubusercontent.com/methanoldev/agent-skillpack/mai
 ## Phát triển pack (sửa skill)
 
 ```bash
-git clone https://github.com/methanoldev/agent-skillpack ~/.agent-skillpack
+git clone https://github.com/methanol-dev/agent-skillpack ~/.agent-skillpack
 # sửa trong ~/.agent-skillpack/.agent/... rồi
 git -C ~/.agent-skillpack commit -am "..." && git -C ~/.agent-skillpack push
 ```
