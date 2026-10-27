@@ -1,19 +1,19 @@
 <#
 .SYNOPSIS
-    Cài bộ skill cá nhân (.agent + CLAUDE.md + ERRORS.md) vào một project.
+    Install the personal skillpack (.agent + CLAUDE.md + ERRORS.md) into a project.
 
 .DESCRIPTION
-    Chạy script này từ THƯ MỤC GỐC của project cần cài, hoặc truyền -Project.
-    - .agent  : tạo junction trỏ về kho trung tâm (không nhân bản 42MB, update 1 chỗ xài chung).
-    - CLAUDE.md : copy vào project (không ghi đè nếu đã có, trừ khi dùng -Force).
-    - ERRORS.md : tạo mới rỗng từ template nếu project chưa có.
-    - .gitignore : tự thêm '.agent/' và 'ERRORS.md' nếu còn thiếu.
+    Run this from the ROOT of the target project, or pass -Project.
+      .agent     : junction to the central pack (no 42MB duplication; update once, shared everywhere)
+      CLAUDE.md  : copied into the project (not overwritten unless -Force)
+      ERRORS.md  : created empty from template if the project has none
+      .gitignore : adds '.agent/' and 'ERRORS.md' if missing
 
 .PARAMETER Project
-    Đường dẫn project đích. Mặc định là thư mục hiện tại.
+    Target project path. Defaults to the current directory.
 
 .PARAMETER Force
-    Ghi đè CLAUDE.md nếu project đã có sẵn.
+    Overwrite CLAUDE.md if the project already has one.
 
 .EXAMPLE
     cd D:\code\my-new-project
@@ -28,55 +28,63 @@ param(
 )
 
 $ErrorActionPreference = "Stop"
-$Pack = $PSScriptRoot
-$Project = (Resolve-Path $Project).Path
 
-Write-Host "==> Kho skillpack : $Pack"
-Write-Host "==> Project đích  : $Project"
+# Resolve the pack directory reliably (do not depend solely on $PSScriptRoot;
+# some hosts invoke the script without populating it).
+$Pack = $PSScriptRoot
+if (-not $Pack) { $Pack = Split-Path -Parent $MyInvocation.MyCommand.Path }
+if (-not $Pack) { throw "Cannot determine skillpack directory (PSScriptRoot empty)." }
+$Pack = $Pack.TrimEnd('\')
+
+$Project = (Resolve-Path $Project).Path.TrimEnd('\')
+
+Write-Host "==> Pack    : $Pack"
+Write-Host "==> Project : $Project"
 Write-Host ""
 
-# 1) .agent qua junction
-$agentLink = Join-Path $Project ".agent"
-$agentSrc  = Join-Path $Pack ".agent"
-if (Test-Path $agentLink) {
-    Write-Host "[.agent]     đã tồn tại, bỏ qua."
+# 1) .agent via junction
+$agentLink = "$Project\.agent"
+$agentSrc  = "$Pack\.agent"
+if (Test-Path -LiteralPath $agentLink) {
+    Write-Host "[.agent]     exists, skip."
 } else {
     New-Item -ItemType Junction -Path $agentLink -Target $agentSrc | Out-Null
-    Write-Host "[.agent]     tạo junction -> $agentSrc"
+    Write-Host "[.agent]     junction -> $agentSrc"
 }
 
-# 2) CLAUDE.md (copy, customizable per-project)
-$claudeDst = Join-Path $Project "CLAUDE.md"
-$claudeSrc = Join-Path $Pack "CLAUDE.md"
-if ((Test-Path $claudeDst) -and -not $Force) {
-    Write-Host "[CLAUDE.md]  đã tồn tại, giữ nguyên (dùng -Force để ghi đè)."
+# 2) CLAUDE.md (copy, per-project customizable)
+$claudeDst = "$Project\CLAUDE.md"
+$claudeSrc = "$Pack\CLAUDE.md"
+if ((Test-Path -LiteralPath $claudeDst) -and (-not $Force)) {
+    Write-Host "[CLAUDE.md]  exists, kept (use -Force to overwrite)."
 } else {
-    Copy-Item $claudeSrc $claudeDst -Force
-    Write-Host "[CLAUDE.md]  copy xong."
+    Copy-Item -LiteralPath $claudeSrc -Destination $claudeDst -Force
+    Write-Host "[CLAUDE.md]  copied."
 }
 
-# 3) ERRORS.md (tạo rỗng từ template)
-$errDst = Join-Path $Project "ERRORS.md"
-$errSrc = Join-Path $Pack "ERRORS.template.md"
-if (Test-Path $errDst) {
-    Write-Host "[ERRORS.md]  đã tồn tại, giữ nguyên."
+# 3) ERRORS.md (fresh empty log from template)
+$errDst = "$Project\ERRORS.md"
+$errSrc = "$Pack\ERRORS.template.md"
+if (Test-Path -LiteralPath $errDst) {
+    Write-Host "[ERRORS.md]  exists, kept."
 } else {
-    Copy-Item $errSrc $errDst -Force
-    Write-Host "[ERRORS.md]  tạo mới từ template."
+    Copy-Item -LiteralPath $errSrc -Destination $errDst -Force
+    Write-Host "[ERRORS.md]  created from template."
 }
 
 # 4) .gitignore
-$giPath = Join-Path $Project ".gitignore"
-$needed = @(".agent/", "ERRORS.md")
-$current = if (Test-Path $giPath) { Get-Content $giPath } else { @() }
-$toAdd = $needed | Where-Object { $current -notcontains $_ }
+$giPath  = "$Project\.gitignore"
+$needed  = @(".agent/", "ERRORS.md")
+$current = if (Test-Path -LiteralPath $giPath) { Get-Content -LiteralPath $giPath } else { @() }
+$toAdd   = $needed | Where-Object { $current -notcontains $_ }
 if ($toAdd.Count -gt 0) {
-    Add-Content -Path $giPath -Value "`n# Skillpack (local tooling, không commit)" -Encoding utf8
-    $toAdd | ForEach-Object { Add-Content -Path $giPath -Value $_ -Encoding utf8 }
-    Write-Host "[.gitignore] thêm: $($toAdd -join ', ')"
+    Add-Content -LiteralPath $giPath -Value "" -Encoding utf8
+    Add-Content -LiteralPath $giPath -Value "# Skillpack (local tooling, not committed)" -Encoding utf8
+    $toAdd | ForEach-Object { Add-Content -LiteralPath $giPath -Value $_ -Encoding utf8 }
+    Write-Host "[.gitignore] added: $($toAdd -join ', ')"
 } else {
-    Write-Host "[.gitignore] đã đủ, bỏ qua."
+    Write-Host "[.gitignore] already set, skip."
 }
 
 Write-Host ""
-Write-Host "XONG. Project đã gắn skillpack." -ForegroundColor Green
+Write-Host "DONE. Skillpack installed into the project." -ForegroundColor Green
